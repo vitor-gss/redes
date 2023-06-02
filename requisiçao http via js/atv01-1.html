@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="ajaxButton" style="cursor: pointer; font-size:100px; color: white;text-decoration: underline; background-color: red; width: 720px;">
+        Make a request
+      </p>
+    <script type="text/javascript">
+        (function() {
+          var httpRequest;
+          document.getElementById("ajaxButton").onclick = function() { makeRequest('https://www2.ifal.edu.br/'); };
+        
+          function makeRequest(url) {
+            if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+              httpRequest = new XMLHttpRequest();
+            } else if (window.ActiveXObject) { // IE
+              try {
+                httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+              }
+              catch (e) {
+                try {
+                  httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                catch (e) {}
+              }
+            }
+        
+            if (!httpRequest) {
+              alert('Giving up :( Cannot create an XMLHTTP instance');
+              return false;
+            }
+            httpRequest.onreadystatechange = alertContents;
+            httpRequest.open('GET', url, true);
+            httpRequest.send();
+          }
+        
+          function alertContents() {
+            if (httpRequest.readyState === 4) {
+              if (httpRequest.status === 200) {
+                document.write(httpRequest.responseText);
+              } else {
+                alert('There was a problem with the request.');
+              }
+            }
+          }
+        })();
+        </script>
+</body>
+</html>
