@@ -1,0 +1,8 @@
+onreadystatechange - quando mudar o estado do objeto.
+readyState - Representa o estado atual.
+    0 - Requisição não inicializada;
+    1 - Estabeleceu requisição com o servidor;
+    2 - Pedido recebido;
+    3 - Processando pedido;
+    4 - Solicitação concluída e resposta pronta;
+status - Resposta que o servidor deu da requisição.
